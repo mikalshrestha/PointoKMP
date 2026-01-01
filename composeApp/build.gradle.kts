@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
@@ -45,8 +46,10 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.core.splashscreen)
-//            implementation(libs.ktor.client.okhttp)
-//            implementation(libs.koin.android)
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.koin.android)
+            implementation(libs.retrofit)
+            implementation(libs.okhttp)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -57,6 +60,21 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor)
+            implementation(project.dependencies.platform(libs.ktor.bom))
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.logging)
+
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kermit)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
